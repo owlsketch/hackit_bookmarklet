@@ -1,7 +1,8 @@
 Bookmarklet that emulates a game of Radical Edward hacking your website.
 Your goal is to try to stop edward from deleting all the elements of you website.
 
-1. Learn how to start implementing a bookmarklet
+DONE 1. Learn how to start implementing a bookmarklet
 2. learn how to add your own elements
+    Create a clear canvas element that contains radical edward :D
 3. learn how to remove elements.
 4. learn how to animate a ddos multiple faces
