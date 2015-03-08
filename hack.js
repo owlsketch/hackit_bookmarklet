@@ -17,6 +17,9 @@ EdTivrusky.init = function () {
     F4C3.id = "F4C3";
     F4C3.height = 120;
     F4C3.width = 120;
+    F4C3.onclick = EdTivrusky.onClickMain;
+    F4C3.style.cursor = "pointer";
+    F4C3.style.cursor = "hand";
     F4C3.style.position = "absolute";
     F4C3.style.zIndex = "1000000";
     F4C3.style.visibility = "visible";
@@ -68,6 +71,10 @@ EdTivrusky.init = function () {
     window.requestAnimationFrame(EdTivrusky.draw);
 };
 
+EdTivrusky.onClickMain = function() {
+    console.log("OW");
+}
+
 EdTivrusky.determineSpeed = function(originX, originY, destinationX, destinationY) {
    var yDist = destinationY - originY; //determining y displacement 
    var xDist = destinationX - originX;
@@ -93,10 +100,6 @@ EdTivrusky.determineSpeed = function(originX, originY, destinationX, destination
    }
 }
 
-EdTivrusky.execScene = function() {
-
-}
-
 EdTivrusky.initScene = function(canvas, cntx, scene, img, destX, destY) {
     if(EdTivrusky.count == EdTivrusky.nextFrame && EdTivrusky.scene == scene)
     {
@@ -113,6 +116,10 @@ EdTivrusky.initScene = function(canvas, cntx, scene, img, destX, destY) {
         cntx.drawImage(img,0,0); //change the image for the movement!
     }
 
+}
+
+EdTivrusky.deleteElement = function() {
+    console.log("TEST");
 }
 
 EdTivrusky.frames = 0; //frames for current animation
@@ -245,9 +252,55 @@ EdTivrusky.draw = function() {
     {
        EdTivrusky.scene = EdTivrusky.scene + 1; 
        //since EdTivrusky.frames is no longer needed, can now use for next indicator
-       EdTivrusky.nextFrame = EdTivrusky.nextFrame + EdTivrusky.frames + 1;
+       EdTivrusky.nextFrame = EdTivrusky.nextFrame + EdTivrusky.frames + 140;
     }
     }
+
+    /////////FIFTH, REMOVE
+    if(EdTivrusky.scene == 4 && EdTivrusky.count == EdTivrusky.nextFrame)
+    {
+        document.getElementById("m3ssag3").remove();
+
+    }
+    
+
+    if(EdTivrusky.count >= EdTivrusky.nextFrame && EdTivrusky.count < (EdTivrusky.nextFrame + EdTivrusky.frames) && EdTivrusky.scene == 4)
+    {
+    EdTivrusky.count = EdTivrusky.count + 1; //counts frames given
+    used = true;
+
+    if(EdTivrusky.count == EdTivrusky.nextFrame + EdTivrusky.frames - 1 ) //if at last "loop"
+    {
+       EdTivrusky.scene = EdTivrusky.scene + 1; 
+       //since EdTivrusky.frames is no longer needed, can now use for next indicator
+       EdTivrusky.nextFrame = EdTivrusky.nextFrame + EdTivrusky.frames + 4;
+    }
+    }
+
+    /////////SIXTH, REMOVE SOMETHING
+    if(EdTivrusky.scene == 5 && EdTivrusky.count == EdTivrusky.nextFrame)
+    {
+
+        var body = document.body;
+        var childnodes = body.childNodes;
+        childnodes[1].remove();
+    }
+    
+
+    if(EdTivrusky.count >= EdTivrusky.nextFrame && EdTivrusky.count < (EdTivrusky.nextFrame + EdTivrusky.frames) && EdTivrusky.scene == 5)
+    {
+    EdTivrusky.count = EdTivrusky.count + 1; //counts frames given
+    used = true;
+
+    if(EdTivrusky.count == EdTivrusky.nextFrame + EdTivrusky.frames - 1 ) //if at last "loop"
+    {
+       EdTivrusky.scene = EdTivrusky.scene + 1; 
+       //since EdTivrusky.frames is no longer needed, can now use for next indicator
+       EdTivrusky.nextFrame = EdTivrusky.nextFrame + EdTivrusky.frames + 20;
+    }
+    }
+
+
 
     if(!used)
     {
