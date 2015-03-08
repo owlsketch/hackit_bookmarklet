@@ -57,10 +57,10 @@ EdTivrusky.init = function () {
     EdTivrusky.messageImg.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/message.svg';
     
     EdTivrusky.angryImg = new Image();
-    EdTivrusky.angryImg.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/img/angry.svg';
+    EdTivrusky.angryImg.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/angry.svg';
 
     EdTivrusky.angryMessage = new Image();
-    EdTivrusky.angryMessage.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/img/angry_message.svg';
+    EdTivrusky.angryMessage.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/angry_message.svg';
 
     EdTivrusky.blinkImg = new Image();
     EdTivrusky.blinkImg.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/first_blink.svg';
