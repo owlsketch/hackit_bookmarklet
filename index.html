@@ -7,7 +7,9 @@
 
     <a href="javascript: (function() {
         var jsHack = document.createElement('script');
-        jsHack.setAttribute('src', 'https://owlsketch.github.io/hackit_bookmarklet/hack.js');
+        /* Replace './hack.js' with 'https://owlsketch.github.io/hackit_bookmarklet/hack.js'
+        for web version. Former is for local development */
+        jsHack.setAttribute('src', './hack.js');
         document.body.appendChild(jsHack);
     }());">Drag this to your bookmark bar!</a>
     <p> Now go to any page you'd like and click on the bookmark. </p>
