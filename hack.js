@@ -1,7 +1,16 @@
+var EdTivrusky = {} //global var
+EdTivrusky.width = window.innerWidth;
+EdTivrusky.height = window.innerHeight;
+EdTivrusky.count = 0;
+EdTivrusky.blinkCount = 0;
+
 //Since our bookmarklet isn't run immediatly, function doesn't need to wait
 //for DOM to be loaded
-var R4D1C4L = function () {
+EdTivrusky.init = function () {
+
+    var x = 40;
     var F4C3 = document.createElement('canvas');
+    F4C3.id = "F4C3";
     F4C3.height = 100;
     F4C3.width = 100;
     F4C3.style.position = "absolute";
@@ -9,63 +18,96 @@ var R4D1C4L = function () {
     F4C3.style.visibility = "visible";
     
     //intial position
-    F4C3.style.left = "20px";
-    F4C3.style.top = "40px";
+    F4C3.style.left = EdTivrusky.width/6 + "px";
+    F4C3.style.top = EdTivrusky.height/4 + "px";
 
 
     var cntx = F4C3.getContext("2d");
+    
+    EdTivrusky.blinkImg = new Image();
+    EdTivrusky.blinkImg.src = 'img/first_blink.svg';
 
-    var source = new Image();
-    source.src = 'img/drawing.svg';
-    source.onload = function(){
-        cntx.drawImage(source,0,0);
+    EdTivrusky.smileImg = new Image();
+    EdTivrusky.smileImg.src = 'img/smile.svg';
+    
+    EdTivrusky.source = new Image();
+    EdTivrusky.source.src = 'img/drawing.svg';
+    EdTivrusky.source.onload = function(){ //draw the image once it actually loads
+        cntx.drawImage(EdTivrusky.source,0,0);
     }
 
-    /* This was an attempt to draw the faces with canvas code.
-     * Too time consuming. Decided to use svgs instead.
-    cntx.fillStyle = 'rgba(245,236,46,1)'; //yellow
-    cntx.strokeStyle = 'rgb(14,29,36)'; //dark dark blue
-    
-
-    //BODY
-    cntx.beginPath();
-    cntx.arc(50,50,45, 0, 2*Math.PI, false); //false means flow is clockwise
-    cntx.lineWidth = 4;
-    cntx.fill();
-    cntx.stroke();
-
-    //EYES
-    
-    //MOUTH
-    cntx.beginPath();
-    cntx.moveTo(55,60);
-    cntx.lineTo(70,70);
-    cntx.lineTo(55,80);
-    cntx.stroke();
-
-    //BLUSHES
-    //BLUSH LEFT
-    cntx.save();
-    cntx.scale(2.2,1);
-    cntx.beginPath();
-    cntx.arc(12,55,5, 0, Math.PI * 2, false);
-    cntx.restore();
-
-    cntx.fillStyle = 'rgba(237,43,36,1)';
-    cntx.fill();
-
-    //BLUSH RIGHT
-    cntx.save();
-    cntx.scale(2.2,1);
-    cntx.beginPath();
-    cntx.arc(36,55,5, 0, Math.PI * 2, false);
-    cntx.restore();
-
-    cntx.fill();
-    */
-
     document.body.appendChild(F4C3);
+    window.requestAnimationFrame(EdTivrusky.draw);
 };
 
-R4D1C4L();
+EdTivrusky.startAnimation = function(canvas) {
+
+    //move to first position
+    if(EdTivrusky.count >= 20 && EdTivrusky.count <= 60)
+    {
+    EdTivrusky.firstPos(canvas);
+    }
+    //move to second position
+    else if(EdTivrusky.count >= 61 && EdTivrusky.count <= 101)
+    {
+    EdTivrusky.secondPos(canvas);
+    }
+    else if(EdTivrusky.count >= 140) {
+    cntx.drawImage(EdTivrusky.smileImg, 0,0);
+    }
+    
+    //blinking controls
+    if(EdTivrusky.count < 140)
+    {
+    if(EdTivrusky.count % 100 == 0 || EdTivrusky.blinkCount < 6)
+    {
+    cntx.drawImage(EdTivrusky.blinkImg, 0,0);
+    EdTivrusky.blinkCount = EdTivrusky.blinkCount + 1;
+        if(EdTivrusky.count % 100 == 0)
+        {
+            EdTivrusky.blinkCount = 0;
+        }
+    }
+    else {
+    cntx.drawImage(EdTivrusky.source, 0, 0);
+    }
+    }
+
+
+    EdTivrusky.count = EdTivrusky.count + 1;
+}
+
+EdTivrusky.firstPos = function(canvas) {
+    //animate here
+    var topPos = parseInt(canvas.style.top) + 4; //add 1 to top dist
+    var leftPos = parseInt(canvas.style.left) + 6;
+    canvas.style.top = topPos + "px";
+    canvas.style.left = leftPos + "px";
+}
+
+EdTivrusky.secondPos = function(canvas) {
+    //animate here
+    var topPos = parseInt(canvas.style.top) - 4; //add 1 to top dist
+    var leftPos = parseInt(canvas.style.left) + 6;
+    canvas.style.top = topPos + "px";
+    canvas.style.left = leftPos + "px";
+}
+
+EdTivrusky.thirdPos = function(canvas) {
+    //animate here
+    var topPos = parseInt(canvas.style.top) - 4; //add 1 to top dist
+    var leftPos = parseInt(canvas.style.left) + 6;
+    canvas.style.top = topPos + "px";
+    canvas.style.left = leftPos + "px";
+}
+
+EdTivrusky.draw = function() {
+    var canvas = document.getElementById("F4C3");
+    cntx = canvas.getContext("2d");
+   
+    EdTivrusky.startAnimation(canvas);
+    window.requestAnimationFrame(EdTivrusky.draw);
+}
+
+EdTivrusky.init();
 
