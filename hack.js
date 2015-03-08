@@ -37,32 +37,32 @@ EdTivrusky.init = function () {
     //loading all the images we'll need
     
     EdTivrusky.leftImg = new Image();
-    EdTivrusky.leftImg.src = 'img/side_left.svg';
+    EdTivrusky.leftImg.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/side_left.svg';
 
     EdTivrusky.leftImgBlink = new Image();
-    EdTivrusky.leftImgBlink.src = 'img/side_left_blink.svg';
+    EdTivrusky.leftImgBlink.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/side_left_blink.svg';
 
 
     EdTivrusky.rightImg = new Image();
-    EdTivrusky.rightImg.src = 'img/side_right.svg';
+    EdTivrusky.rightImg.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/side_right.svg';
 
     EdTivrusky.rightImgBlink = new Image();
-    EdTivrusky.rightImgBlink.src = 'img/side_right_blink.svg';
+    EdTivrusky.rightImgBlink.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/side_right_blink.svg';
 
 
     EdTivrusky.smileImg = new Image();
-    EdTivrusky.smileImg.src = 'img/smile.svg';
+    EdTivrusky.smileImg.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/smile.svg';
 
     EdTivrusky.messageImg = new Image();
-    EdTivrusky.messageImg.src = 'img/message.svg';
+    EdTivrusky.messageImg.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/message.svg';
     
 
 
     EdTivrusky.blinkImg = new Image();
-    EdTivrusky.blinkImg.src = 'img/first_blink.svg';
+    EdTivrusky.blinkImg.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/first_blink.svg';
 
     EdTivrusky.source = new Image();
-    EdTivrusky.source.src = 'img/main.svg';
+    EdTivrusky.source.src = 'https://owlsketch.github.io/hackit_bookmarklet/img/main.svg';
     EdTivrusky.source.onload = function(){ //draw the image once it actually loads
         cntx.drawImage(EdTivrusky.source,0,0);
     }
