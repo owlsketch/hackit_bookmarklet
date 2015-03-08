@@ -500,6 +500,55 @@ EdTivrusky.draw = function() {
        EdTivrusky.nextFrame = EdTivrusky.nextFrame + EdTivrusky.frames + 60;
     }
     }
+
+
+
+    ///////////////another
+    if(EdTivrusky.scene == 8 && EdTivrusky.count == EdTivrusky.nextFrame)
+    {
+
+        var body = document.body;
+        EdTivrusky.childnodes = body.childNodes;
+        var rect = EdTivrusky.childnodes[4].getBoundingClientRect();
+        var nodeX = rect.left; //x and y coordinates of our element
+        var nodeY = rect.top;
+
+        
+        EdTivrusky.lastCheckedXpos = parseInt(canvas.style.left, 10);
+        EdTivrusky.lastCheckedYpos = parseInt(canvas.style.top, 10)
+        //1st determine number of frames it will take
+        EdTivrusky.frames = EdTivrusky.determineSpeed(EdTivrusky.lastCheckedXpos, EdTivrusky.lastCheckedYpos, nodeX,nodeY);
+
+    }
+    
+
+    if(EdTivrusky.count >= EdTivrusky.nextFrame && EdTivrusky.count < (EdTivrusky.nextFrame + EdTivrusky.frames) && EdTivrusky.scene == 8)
+    {
+    var yPos = parseInt(canvas.style.top,10) + EdTivrusky.velocityY; //add 1 to top dist
+    var xPos = parseInt(canvas.style.left,10) + EdTivrusky.velocityX;
+
+    canvas.style.top = yPos + "px";
+    canvas.style.left = xPos + "px";
+
+    EdTivrusky.count = EdTivrusky.count + 1; //counts frames given
+    used = true;
+
+    if(EdTivrusky.count == EdTivrusky.nextFrame + EdTivrusky.frames - 1 || EdTivrusky.frames == 1) //if at last "loop"
+    {
+       EdTivrusky.velocityY = 11;
+       EdTivrusky.velocityX = 11;
+
+       EdTivrusky.childnodes[4].remove(); //finally reach now delete
+       EdTivrusky.scene = EdTivrusky.scene + 1; 
+       //since EdTivrusky.frames is no longer needed, can now use for next indicator
+       EdTivrusky.nextFrame = EdTivrusky.nextFrame + EdTivrusky.frames + 60;
+    }
+    }
+
+
+
+
+
     if(!used)
     {
     EdTivrusky.count = EdTivrusky.count + 1; //counts frames given
